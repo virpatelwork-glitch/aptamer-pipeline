@@ -1,0 +1,20 @@
+# AutoDock Vina Pipeline Configuration
+vina_version: 1.2.3
+exhaustiveness: 32
+num_modes: 20
+energy_range: 3
+
+# Grid Box Dimensions (Angstroms)
+grid_center: [15.0, 10.0, 20.0]
+grid_size: [30.0, 30.0, 30.0]
+
+# Target PDB IDs
+targets:
+  primary: 1IYT (Amyloid-beta 42)
+  off_target_1: 2LMN (Amyloid-beta 40)
+  off_target_2: 2MXU (Tau protein)
+  off_target_3: 1AO6 (Serum Albumin)
+
+# Notes
+parameter_consistency: "Identical grid dimensions and exhaustiveness were maintained across all targets to ensure fair selectivity comparisons."
+force_field: "AMBER-based force field used for receptor preparation."
