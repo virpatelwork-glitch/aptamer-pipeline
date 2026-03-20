@@ -8,7 +8,6 @@ This is a purely **computational study**. The repository provides the scripts an
 
 *   `scripts/`: Python scripts for sequence generation, folding analysis, and docking setup.
 *   `configs/`: Configuration files for AutoDock Vina parameters.
-*   `docs/`: Detailed overview of the pipeline flow and methodology.
 
 ## Key Tools Used
 
