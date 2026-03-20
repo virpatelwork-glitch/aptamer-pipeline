@@ -133,47 +133,4 @@ feature_imp_df = feature_imp_df.sort_values(by='Importance', ascending=False)
 print("\nTop 10 Most Impactful Features for Binding Score:")
 print(feature_imp_df.head(10))
 
-# ============================================================================
-# 6. VISUALIZATION
-# ============================================================================
-print("\n[6] Generating Visualizations...")
 
-plt.figure(figsize=(20, 12))
-
-# Subplot 1: Feature Importance
-plt.subplot(2, 2, 1)
-sns.barplot(x='Importance', y='Feature', data=feature_imp_df.head(15), palette='magma')
-plt.title('Top 15 Impactful Features (L4 Aβ42 Binding)', fontsize=14)
-
-# Subplot 2: Actual vs Predicted
-plt.subplot(2, 2, 2)
-plt.scatter(y_test, y_pred, alpha=0.7, color='teal')
-plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)
-plt.xlabel('Actual Vina Aβ42 Score')
-plt.ylabel('Predicted Vina Aβ42 Score')
-plt.title(f'Actual vs Predicted (R² = {r2:.3f})', fontsize=14)
-
-# Subplot 3: Residuals
-plt.subplot(2, 2, 3)
-residuals = y_test - y_pred
-sns.histplot(residuals, kde=True, color='purple')
-plt.title('Residuals Distribution', fontsize=14)
-plt.xlabel('Residual (Actual - Predicted)')
-
-# Subplot 4: Top Feature Correlation
-top_feat = feature_imp_df.iloc[0]['Feature']
-plt.subplot(2, 2, 4)
-sns.regplot(x=X[top_feat], y=y, color='coral', scatter_kws={'alpha':0.5})
-plt.title(f'Impact of {top_feat} on Binding Score', fontsize=14)
-plt.xlabel(top_feat)
-plt.ylabel('Vina Aβ42 Score')
-
-plt.tight_layout()
-plt.savefig('/home/ubuntu/l4_regression_results.png', dpi=300)
-print("Visualization saved to 'l4_regression_results.png'")
-
-# Save data
-feature_imp_df.to_csv('/home/ubuntu/l4_feature_impact.csv', index=False)
-l4_df.to_csv('/home/ubuntu/l4_processed_data.csv', index=False)
-
-print("\nAnalysis Complete!")
